@@ -1,0 +1,23 @@
+@use 'colors';
+
+$Nav-breakpoint: 9999px;
+
+.Nav {
+	// --- Desktop navigation styles -----------------------------------------------------------------
+
+	@media (width >= $Nav-breakpoint) {
+	}
+
+	// --- Mobile navigation styles ------------------------------------------------------------------
+
+	@media (width < $Nav-breakpoint) {
+	}
+}
+
+.NavBurger {
+	@media (width < 1024px) {
+		&__text {
+			display: none;
+		}
+	}
+}

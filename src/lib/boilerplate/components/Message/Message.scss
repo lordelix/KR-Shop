@@ -1,0 +1,57 @@
+@use 'sass:color';
+
+:where(.Message) {
+	padding: 1rem;
+	border-radius: 0.25rem;
+	background: #dfdfdf;
+	border: 1px solid #7c7c7c;
+	color: color.mix(black, rgb(34, 34, 34), 66%);
+	text-align: center;
+	position: relative;
+	box-shadow: 2px 2px 2px rgba(black, 0.1);
+}
+
+:where(.Message__title) {
+	margin: 0 0 1rem;
+	padding: 0;
+}
+
+:where(.Message--error) {
+	background: #ffe3e3;
+	border: 1px solid #ffb0b0;
+}
+
+:where(.Message--info) {
+	background: #fff8e3;
+	border: 1px solid #fff3b0;
+}
+
+:where(.Message--success) {
+	background: #e6ffe3;
+	border: 1px solid #8ee79d;
+}
+
+:where(.Message--inline) {
+	display: inline-flex;
+	gap: 0.5rem;
+	align-items: center;
+	padding: 0.5rem;
+	text-align: left;
+}
+
+:where(.Message--inline .Message__title) {
+	margin: 0;
+}
+
+:where(.Message--closable) {
+	padding-right: 1.25rem;
+}
+
+:where(.Message__close-button) {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	transform: translate(33%, -33%);
+	padding: 0.5rem;
+	cursor: pointer;
+}
