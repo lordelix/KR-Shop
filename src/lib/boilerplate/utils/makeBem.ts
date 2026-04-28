@@ -13,19 +13,20 @@
  */
 
 export default function makeBEM<T>(block: T) {
-	const ed = '__' // Element delimiter
-	const md = '--' // Modifier delimiter
+  const ed = '__'; // Element delimiter
+  const md = '--'; // Modifier delimiter
 
-	return {
-		block,
-		/** @returns 'block__element' */
-		element: (element: T) => {
-			return block + ed + element
-		},
-		/** @returns 'block--modifier' */
-		modifier: (modifier: T) => {
-			return block + md + modifier
-		},
-		elementModifier: (element: T) => (modifier: T) => block + ed + element + md + modifier
-	}
+  return {
+    block,
+    /** @returns 'block__element' */
+    element: (element: T) => {
+      return block + ed + element;
+    },
+    /** @returns 'block--modifier' */
+    modifier: (modifier: T) => {
+      return block + md + modifier;
+    },
+    elementModifier: (element: T) => (modifier: T) =>
+      block + ed + element + md + modifier
+  };
 }

@@ -1,3 +1,3 @@
-import type { ComponentBaseProps } from '$lib/boilerplate/boilerplate'
+import type { ComponentBaseProps } from '$lib/boilerplate/boilerplate';
 
-export type ToplinkProps = ComponentBaseProps
+export type ToplinkProps = ComponentBaseProps;

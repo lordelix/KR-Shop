@@ -1,32 +1,32 @@
 @use '$lib/styles/Nav' as var;
 
 @media (width < var.$Nav-breakpoint) {
-	:where(.NavBurger) {
-		align-items: center;
-		background: none;
-		border: 0 none;
-		cursor: pointer;
-		display: flex;
-		height: 42px;
-		justify-content: center;
-		margin: 0;
-		padding: 0;
-		position: fixed;
-		right: 1rem;
-		top: 0.5rem;
-		z-index: 2;
-		font-weight: bold;
-		font-size: 1rem;
-	}
-	:where(.NavBurger__svg) {
-		width: 21px;
-		height: 21px;
-		fill: currentColor;
-	}
+  :where(.NavBurger) {
+    align-items: center;
+    background: none;
+    border: 0 none;
+    cursor: pointer;
+    display: flex;
+    height: 42px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    right: 1rem;
+    top: 0.5rem;
+    z-index: 2;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  :where(.NavBurger__svg) {
+    width: 21px;
+    height: 21px;
+    fill: currentColor;
+  }
 }
 
 @media (width >= var.$Nav-breakpoint) {
-	:where(.NavBurger) {
-		display: none;
-	}
+  :where(.NavBurger) {
+    display: none;
+  }
 }

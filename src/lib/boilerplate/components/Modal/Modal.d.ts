@@ -1,16 +1,16 @@
-import type { Snippet } from 'svelte'
+import type { Snippet } from 'svelte';
 
 export interface ModalProps {
-	baseName?: string
-	title?: string
-	isOpen?: boolean
-	class?: string
+  baseName?: string;
+  title?: string;
+  isOpen?: boolean;
+  class?: string;
 
-	// Slots
-	children?: Snippet
-	footer?: Snippet
+  // Slots
+  children?: Snippet;
+  footer?: Snippet;
 
-	// Events
-	onClose?: () => void
-	onOpen?: () => void
+  // Events
+  onClose?: () => void;
+  onOpen?: () => void;
 }

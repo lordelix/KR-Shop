@@ -1,3 +1,3 @@
-import { MESSAGES } from '$lib/boilerplate/components/MessageBus/MessageBus'
+import { MESSAGES } from '$lib/boilerplate/components/MessageBus/MessageBus';
 
-export default MESSAGES()
+export default MESSAGES();

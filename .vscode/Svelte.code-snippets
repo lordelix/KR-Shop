@@ -1,20 +1,20 @@
 {
-	"Svelte template": {
-		"scope": "svelte",
-		"prefix": "svelte",
-		"body": [
-			"<svelte:head>",
-			"  <title>$1</title>",
-			"</svelte:head>",
-			"",
-			"<div>",
-			"  <!-- Content -->",
-			"</div>",
-			"",
-			"<style lang=\"scss\">",
-			"  @use '\\$styles/colors' as colors;",
-			"</style>"
-		],
-		"description": "Svelte File"
-	}
+  "Svelte template": {
+    "scope": "svelte",
+    "prefix": "svelte",
+    "body": [
+      "<svelte:head>",
+      "  <title>$1</title>",
+      "</svelte:head>",
+      "",
+      "<div>",
+      "  <!-- Content -->",
+      "</div>",
+      "",
+      "<style lang=\"scss\">",
+      "  @use '\\$styles/colors' as colors;",
+      "</style>"
+    ],
+    "description": "Svelte File"
+  }
 }

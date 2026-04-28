@@ -8,4 +8,4 @@ export default {
   fax: '',
   email: 'info@musterfirma.de',
   web: 'musterfirma.de'
-}
+};
