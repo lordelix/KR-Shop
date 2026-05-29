@@ -28,7 +28,6 @@ Die Konfiguration wird über öffentliche SvelteKit-Variablen gesteuert:
 Beispiel `.env`:
 
 ```env
-PUBLIC_SHOP_API_BASE_URL=https://api.klickrhein.de/v6
 PUBLIC_SHOP_API_KEY=your-api-key
 PUBLIC_SHOP_MODULE_ID=1
 PUBLIC_PAYPAL_CLIENT_ID=your-paypal-client-id
