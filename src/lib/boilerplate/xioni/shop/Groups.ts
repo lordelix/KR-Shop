@@ -1,38 +1,41 @@
-import type { XioniShop } from '../types';
-import { createClient, createShopUrl } from '../api/client';
-import type { KyResponse } from 'ky';
+import { fetchWithErrorHandling } from '../utils/fetchWithErrorResponse';
+import { ApiPaths } from '../api/api.d';
+import createClient from '../api/client';
+import appConfig from '../../../app.config.js';
+
+const moduleId = Number(appConfig.shopModuleId);
 
 export function useGroups() {
   const client = createClient();
 
-  async function getGroups(): Promise<XioniShop.Group[]> {
-    try {
-      return await client.get(createShopUrl('groups')).json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+  function getGroups() {
+    return fetchWithErrorHandling(() =>
+      client.GET(ApiPaths.getGroups, {
+        params: {
+          path: { moduleId }
+        }
+      })
+    );
   }
 
-  async function getGroup(id: number): Promise<XioniShop.Group> {
-    try {
-      return await client.get(createShopUrl(`groups/${id}`)).json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+  function getGroup(id: number) {
+    return fetchWithErrorHandling(() =>
+      client.GET(ApiPaths.getGroup, {
+        params: {
+          path: { moduleId, groupId: id }
+        }
+      })
+    );
   }
 
-  async function getGroupByProductId(id: number): Promise<XioniShop.Group> {
-    try {
-      return await client.get(createShopUrl(`products/${id}/group`)).json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+  function getGroupByProductId(id: number) {
+    return fetchWithErrorHandling(() =>
+      client.GET(ApiPaths.getProductGroup, {
+        params: {
+          path: { moduleId, productId: id }
+        }
+      })
+    );
   }
 
   return {

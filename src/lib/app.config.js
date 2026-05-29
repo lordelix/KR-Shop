@@ -1,7 +1,9 @@
 import * as ENV from '$env/static/public';
 
 export default {
-  payPalClientId: ENV.PUBLIC_PAYPAL_CLIENT_ID || '',
+  paypalClientId: ENV.PUBLIC_PAYPAL_CLIENT_ID || '',
+  shopApiBaseUrl:
+    ENV.PUBLIC_SHOP_API_BASE_URL || 'https://api.klickrhein.de/v6',
   shopApiKey: ENV.PUBLIC_SHOP_API_KEY || '',
-  shopModuleID: ENV.PUBLIC_SHOP_MODULE_ID || 0
+  shopModuleId: ENV.PUBLIC_SHOP_MODULE_ID || 0
 };

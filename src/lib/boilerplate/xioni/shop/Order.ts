@@ -1,6 +1,10 @@
-import { createClient, createShopUrl } from '../api/client';
+import { fetchWithErrorHandling } from '../utils/fetchWithErrorResponse';
+import { ApiPaths } from '../api/api.d';
+import createClient from '../api/client';
+import appConfig from '../../../app.config.js';
 import type { XioniShop } from '../types';
-import type { KyResponse } from 'ky';
+
+const moduleId = Number(appConfig.shopModuleId);
 
 type UpdateOrderParams = {
   address?: XioniShop.Order['address'];
@@ -15,46 +19,48 @@ export function useOrder() {
   const client = createClient();
 
   async function createOrder(): Promise<string> {
-    try {
-      const data = (await client.post(createShopUrl('order')).json()) as {
-        transactionId: string;
-      };
+    const data = await fetchWithErrorHandling(() =>
+      client.POST(ApiPaths.postOrder, {
+        params: {
+          path: { moduleId }
+        }
+      })
+    );
 
-      return data.transactionId;
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+    return data.transactionId;
   }
 
   async function updateOrder(
     update: UpdateOrderParams
   ): Promise<XioniShop.Order> {
-    try {
-      const data = await client
-        .patch(createShopUrl('order'), { json: update })
-        .json();
-      return orderAdapter(data) as XioniShop.Order;
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
+    const data = await fetchWithErrorHandling(() =>
+      client.PATCH(ApiPaths.updateOrder, {
+        params: {
+          path: { moduleId }
+        },
+        body: update
+      })
+    );
 
-      throw errorData;
-    }
+    return orderAdapter(data) as XioniShop.Order;
   }
 
   async function getOrder(id?: string): Promise<XioniShop.Order> {
-    try {
-      const data = await client
-        .get(createShopUrl(`order${id ? '/' + id : ''}`))
-        .json();
+    const data = await fetchWithErrorHandling(() =>
+      id
+        ? client.GET(ApiPaths.getOrderByTransactionId, {
+            params: {
+              path: { moduleId, transactionId: id }
+            }
+          })
+        : client.GET(ApiPaths.getOrder, {
+            params: {
+              path: { moduleId }
+            }
+          })
+    );
 
-      return orderAdapter(data) as XioniShop.Order;
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+    return orderAdapter(data) as XioniShop.Order;
   }
 
   return {

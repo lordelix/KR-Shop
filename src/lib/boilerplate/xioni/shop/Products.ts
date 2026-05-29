@@ -1,6 +1,9 @@
-import type { XioniShop } from '../types';
-import { createClient, createShopUrl } from '../api/client';
-import type { KyResponse } from 'ky';
+import { fetchWithErrorHandling } from '../utils/fetchWithErrorResponse';
+import { ApiPaths } from '../api/api.d';
+import createClient from '../api/client';
+import appConfig from '../../../app.config.js';
+
+const moduleId = Number(appConfig.shopModuleId);
 
 export function useProducts() {
   const client = createClient();
@@ -12,24 +15,18 @@ export function useProducts() {
    * @returns List of Products
    */
 
-  async function getProducts(params?: {
-    limit?: number;
-    frontpage?: boolean;
-  }): Promise<XioniShop.Product[]> {
-    try {
-      const url = createShopUrl('products', {
-        query: {
-          limit: params?.limit,
-          frontpage: params?.frontpage
+  function getProducts(params?: { limit?: number; frontpage?: boolean }) {
+    return fetchWithErrorHandling(() =>
+      client.GET(ApiPaths.getProducts, {
+        params: {
+          path: { moduleId },
+          query: {
+            limit: params?.limit,
+            frontpage: params?.frontpage
+          }
         }
-      });
-
-      return client.get<XioniShop.Product[]>(url).json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+      })
+    );
   }
 
   /**
@@ -39,16 +36,14 @@ export function useProducts() {
    * @returns Product
    */
 
-  async function getProduct(id: number): Promise<XioniShop.Product> {
-    try {
-      return client
-        .get<XioniShop.Product>(createShopUrl(`products/${id}`))
-        .json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+  function getProduct(id: number) {
+    return fetchWithErrorHandling(() =>
+      client.GET(ApiPaths.getProduct, {
+        params: {
+          path: { moduleId, productId: id }
+        }
+      })
+    );
   }
   /**
    * Get produtcs corresponding to a given Category
@@ -58,27 +53,24 @@ export function useProducts() {
    * @returns List of Products
    */
 
-  async function getProductsByGroup(
+  function getProductsByGroup(
     category: number,
     params?: {
       limit?: number;
       recursive?: boolean;
     }
-  ): Promise<XioniShop.Product[]> {
-    try {
-      const url = createShopUrl(`groups/${category}/products`, {
-        query: {
-          limit: params?.limit,
-          recursive: params?.recursive
+  ) {
+    return fetchWithErrorHandling(() =>
+      client.GET(ApiPaths.getGroupProducts, {
+        params: {
+          path: { moduleId, groupId: category },
+          query: {
+            limit: params?.limit,
+            recursive: params?.recursive
+          }
         }
-      });
-
-      return client.get<XioniShop.Product[]>(url).json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+      })
+    );
   }
 
   return {

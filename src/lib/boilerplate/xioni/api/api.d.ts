@@ -862,8 +862,8 @@ export interface components {
             date?: string | null;
             transactionId?: components["schemas"]["ShopTransactionId"] | null;
             paymentType?: components["schemas"]["ShopOrderPaymentType"];
-            address?: components["schemas"]["ShopOrderPartialAdress"];
-            deliveryAddress?: components["schemas"]["ShopOrderPartialDeliveryAdress"] | null;
+            address?: components["schemas"]["ShopOrderAdress"];
+            deliveryAddress?: components["schemas"]["ShopOrderDeliveryAdress"] | null;
             message?: string | null;
             total?: components["schemas"]["ShopPreformattedNumber"];
             shippingCost?: components["schemas"]["ShopPreformattedNumber"];
@@ -911,7 +911,10 @@ export interface components {
         ShopOrderDeliveryAdress: WithRequired<components["schemas"]["ShopOrderPartialDeliveryAdress"], "name" | "address" | "zip" | "city">;
         /** @description Transaction id */
         ShopTransactionId: string;
-        /** @enum {string} */
+        /**
+         * @description Payment type for order
+         * @enum {string}
+         */
         ShopOrderPaymentType: "paypal" | "prepayment";
         /** @description Product */
         ShopProduct: {
@@ -963,6 +966,7 @@ export interface components {
             description?: string | null;
             tags: components["schemas"]["Tag"][];
         };
+        /** @description A taxonomy tag from a vocabulary */
         Tag: {
             id: number;
             name: string;
@@ -1014,6 +1018,8 @@ export interface components {
         transactionId: components["schemas"]["ShopTransactionId"];
         /** @description Product id */
         productId: number;
+        /** @description Limit to items selected to be shown on frontpage */
+        frontpage: boolean | null;
         /** @description Module id */
         moduleId: number;
         /** @description Return up to given number of items */
@@ -1095,6 +1101,7 @@ export type ParameterBookingPlanQueryUntil = components['parameters']['bookingPl
 export type ParameterGroupId = components['parameters']['groupId'];
 export type ParameterTransactionId = components['parameters']['transactionId'];
 export type ParameterProductId = components['parameters']['productId'];
+export type ParameterFrontpage = components['parameters']['frontpage'];
 export type ParameterModuleId = components['parameters']['moduleId'];
 export type ParameterLimit = components['parameters']['limit'];
 export type ParameterOffset = components['parameters']['offset'];
@@ -2079,7 +2086,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Order */
+            /** @description The current order */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -2174,14 +2181,14 @@ export interface operations {
             };
             cookie?: never;
         };
-        /** @description Order update */
+        /** @description The values to update the order with */
         requestBody?: {
             content: {
                 "application/json": components["schemas"]["ShopOrderPatchRequestBody"];
             };
         };
         responses: {
-            /** @description Order */
+            /** @description The updated order's values */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -2233,7 +2240,12 @@ export interface operations {
     };
     getProducts: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description Return up to given number of items */
+                limit?: components["parameters"]["limit"];
+                /** @description Limit to items selected to be shown on frontpage */
+                frontpage?: components["parameters"]["frontpage"];
+            };
             header?: never;
             path: {
                 /** @description Module id */

@@ -1,6 +1,9 @@
-import { createClient, createShopUrl } from '../api/client';
-import type { XioniShop } from '../types';
-import type { KyResponse } from 'ky';
+import { fetchWithErrorHandling } from '../utils/fetchWithErrorResponse';
+import { ApiPaths } from '../api/api.d';
+import createClient from '../api/client';
+import appConfig from '../../../app.config.js';
+
+const moduleId = Number(appConfig.shopModuleId);
 
 export function useInfo() {
   const client = createClient();
@@ -11,16 +14,14 @@ export function useInfo() {
    * @returns Info about owner and shipping costs
    */
 
-  async function getInfos(): Promise<XioniShop.Info> {
-    try {
-      const url = createShopUrl('info');
-
-      return client.get<XioniShop.Info>(url).json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+  function getInfos() {
+    return fetchWithErrorHandling(() =>
+      client.GET(ApiPaths.getInfo, {
+        params: {
+          path: { moduleId }
+        }
+      })
+    );
   }
 
   return {

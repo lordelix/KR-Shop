@@ -1,6 +1,9 @@
-import type { KyResponse } from 'ky';
-import appConfig from '$lib/app.config';
-import { createClient, createShopUrl } from '../api/client';
+import { fetchWithErrorHandling } from '../utils/fetchWithErrorResponse';
+import { ApiPaths } from '../api/api';
+import createClient from '../api/client';
+import appConfig from '../../../app.config.js';
+
+const moduleId = Number(appConfig.shopModuleId);
 
 // --- Factory -------------------------------------------------------------------------------------
 
@@ -10,41 +13,28 @@ export function usePayment() {
   async function createPayPalTransaction(
     transactionId: string
   ): Promise<string> {
-    try {
-      const { orderId } = await client
-        .post<{ orderId: string }>(createShopUrl('payment/paypal/create'), {
-          headers: {
-            'api-key': appConfig.shopApiKey,
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify({ transactionId })
-        })
-        .json();
+    const { orderId } = await fetchWithErrorHandling(() =>
+      client.POST(ApiPaths.createPayPalOrder, {
+        params: {
+          path: { moduleId }
+        },
+        body: { transactionId }
+      })
+    );
 
-      return orderId;
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+    return orderId;
   }
 
   async function capturePayPalTransaction(orderId: string): Promise<boolean> {
-    try {
-      await client.post(createShopUrl('payment/paypal/capture'), {
-        headers: {
-          'api-key': appConfig.shopApiKey,
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({ orderId })
-      });
+    await fetchWithErrorHandling(() =>
+      client.POST(ApiPaths.capturePayPalPaymentForOrder, {
+        params: {
+          path: { moduleId }
+        }
+      })
+    );
 
-      return true;
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+    return true;
   }
 
   return {

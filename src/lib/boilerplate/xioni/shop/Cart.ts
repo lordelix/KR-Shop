@@ -1,10 +1,12 @@
-import { createClient, createShopUrl } from '../api/client';
-import type { KyResponse } from 'ky';
-import type { XioniShop } from '../types';
+import { fetchWithErrorHandling } from '../utils/fetchWithErrorResponse';
+import { ApiPaths } from '../api/api.d';
+import createClient from '../api/client';
+import appConfig from '../../../app.config.js';
+
+const moduleId = Number(appConfig.shopModuleId);
 
 export function useCart() {
   const client = createClient();
-  const url = createShopUrl(`cart`);
 
   /**
    * Get the cart contents
@@ -12,14 +14,14 @@ export function useCart() {
    * @returns Cart
    */
 
-  async function getCart() {
-    try {
-      return client.get<XioniShop.Cart>(url).json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+  function getCart() {
+    return fetchWithErrorHandling(() =>
+      client.GET(ApiPaths.getCart, {
+        params: {
+          path: { moduleId }
+        }
+      })
+    );
   }
 
   /**
@@ -32,18 +34,19 @@ export function useCart() {
    */
 
   async function updateItemQuantity(id: number, quantity: number) {
-    try {
-      return client
-        .put<XioniShop.Cart>(url, {
-          body: JSON.stringify([{ productId: id, quantity }]),
-          headers: { 'Content-Type': 'application/json' }
-        })
-        .json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+    return fetchWithErrorHandling(() =>
+      client.PUT(ApiPaths.updateCart, {
+        params: {
+          path: { moduleId }
+        },
+        body: [
+          {
+            productId: id,
+            quantity
+          }
+        ]
+      })
+    );
   }
 
   /**
@@ -54,19 +57,20 @@ export function useCart() {
    * @returns Cart
    */
 
-  async function addItem(id: number): Promise<XioniShop.Cart> {
-    try {
-      return client
-        .put<XioniShop.Cart>(url, {
-          body: JSON.stringify([{ productId: id, quantity: 1 }]),
-          headers: { 'Content-Type': 'application/json' }
-        })
-        .json();
-    } catch (error) {
-      const errorData = await ((error as any).response as KyResponse).json();
-
-      throw errorData;
-    }
+  async function addItem(id: number) {
+    return fetchWithErrorHandling(() =>
+      client.PUT(ApiPaths.updateCart, {
+        params: {
+          path: { moduleId }
+        },
+        body: [
+          {
+            productId: id,
+            quantity: 1
+          }
+        ]
+      })
+    );
   }
 
   return {

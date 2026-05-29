@@ -120,10 +120,10 @@
 
 	<p class="$mt-3">Vielen Dank für Ihren Auftrag.</p>
 
-	{#if order.paymentType !== 'Paypal' && shopConfig.payPalClientId}
+	{#if order.paymentType !== 'Paypal' && shopConfig.paypalClientId}
 		<p class="$font-bold">Bezahlen Sie jetzt per PayPal:</p>
 
-		<PayPalButtons clientId={shopConfig.payPalClientId} {createOrderHandler} {onApproveHandler} />
+		<PayPalButtons clientId={shopConfig.paypalClientId} {createOrderHandler} {onApproveHandler} />
 
 		<p>
 			Alternativ können Sie den Gesamtbetrag von {order.total.formatted} innerhalb von 14 Tagen ab Rechnungsdatum

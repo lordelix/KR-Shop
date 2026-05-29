@@ -1,31 +1,15 @@
+import createOpenApiClient, { type ClientOptions } from 'openapi-fetch';
 import appConfig from '$lib/app.config';
-import ky from 'ky';
-import { pickBy } from 'lodash-es';
+import type { paths } from './api';
 
-export function createClient() {
-  const apiKey = appConfig.shopApiKey;
-
-  return ky.create({
+export default function createClient(clientOptions?: ClientOptions) {
+  return createOpenApiClient<paths>({
+    baseUrl: appConfig.shopApiBaseUrl,
+    ...clientOptions,
     headers: {
       accept: 'application/json',
-      'api-key': apiKey
+      'api-key': appConfig.shopApiKey,
+      ...clientOptions?.headers
     }
   });
-}
-
-export function createShopUrl(
-  path: string,
-  { query }: { query?: Record<string, any> } = {}
-): string {
-  const url = `/api/shop/${appConfig.shopModuleID}/${path}`;
-
-  if (query) {
-    const searchParams = new URLSearchParams(
-      pickBy(query, (value) => value !== undefined)
-    ).toString();
-
-    return `${url}?${searchParams}`;
-  }
-
-  return url;
 }

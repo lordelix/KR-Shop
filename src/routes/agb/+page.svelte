@@ -48,7 +48,7 @@
 	<p>In unserem Shop bieten wir Ihnen folgenden Zahlungsarten an:</p>
 	<ul class="--dash">
 		<li>Vorkasse</li>
-		{#if config.payPalClientId}
+		{#if config.paypalClientId}
 			<li>Paypal</li>
 		{/if}
 	</ul>
