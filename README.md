@@ -10,11 +10,6 @@ SvelteKit-basierter Online-Shop mit Produktlisten, Produktdetailseiten, Warenkor
 - SCSS
 - OpenAPI-typisierte API-Anbindung (`openapi-typescript`, `openapi-fetch`)
 
-## Voraussetzungen
-
-- Node.js 20+ (empfohlen aktuelle LTS)
-- npm 10+
-
 ## Schnellstart
 
 ```bash
