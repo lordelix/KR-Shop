@@ -19,8 +19,6 @@
 		onAddToCart
 	}: XioniShopProductProps = $props()
 
-	// -----------------------------------------------------------------------------------------------
-
 	const {
 		name,
 		teaser,
@@ -34,7 +32,7 @@
 		image,
 		code,
 		ean
-	} = product
+	} = $derived(product)
 
 	// svelte-ignore non_reactive_update
 	let productImageModal: Modal

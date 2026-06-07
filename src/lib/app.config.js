@@ -1,7 +1,7 @@
-import * as ENV from '$env/static/public';
+import env from '$env/static/public';
 
 export default {
-  paypalClientId: ENV.PUBLIC_PAYPAL_CLIENT_ID || '',
-  shopApiKey: ENV.PUBLIC_SHOP_API_KEY || '',
-  shopModuleId: ENV.PUBLIC_SHOP_MODULE_ID || 0
+  paypalClientId: env.PUBLIC_PAYPAL_CLIENT_ID || '',
+  shopApiKey: env.PUBLIC_SHOP_API_KEY || '',
+  shopModuleId: env.PUBLIC_SHOP_MODULE_ID || 0
 };

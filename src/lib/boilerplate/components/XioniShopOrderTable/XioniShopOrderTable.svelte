@@ -16,7 +16,7 @@
 
 	// --- [ BEM ] -----------------------------------------------------------------------------------
 
-	const { block } = makeBEM(baseName)
+	const block = $derived(makeBEM(baseName).block)
 </script>
 
 <table {...restProps} class={[block, className]}>

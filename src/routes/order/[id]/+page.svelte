@@ -9,15 +9,15 @@
 
 	// --- [ Props ] ---------------------------------------------------------------------------------
 
-	const { data } = $props()
+	let { data } = $props()
 
 	// -----------------------------------------------------------------------------------------------
 
 	let paypalOrderId: string
-	let order = data.order as XioniShop.Order
-	let address = data.order.address as XioniShop.Order['address']
-	let date = format(order.date as Date, 'PPP')
-	let deliveryAddress = order.deliveryAddress as XioniShop.Order['deliveryAddress']
+	let order = $derived(data.order as XioniShop.Order)
+	let address = $derived(order.address as XioniShop.Order['address'])
+	let date = $derived(format(order.date as Date, 'PPP'))
+	let deliveryAddress = $derived(order.deliveryAddress as XioniShop.Order['deliveryAddress'])
 
 	const orderApi = useOrder()
 	const paymentApi = usePayment()

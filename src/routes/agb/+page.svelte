@@ -1,11 +1,9 @@
 <script>
 	import stammdaten from '$lib/stammdaten'
 	import config from '$lib/app.config'
-	import { da } from 'date-fns/locale'
-	import { each } from 'lodash-es'
 
 	let { data } = $props()
-	const { shippingCost } = data.infos
+	const { shippingCost } = $derived(data.infos)
 </script>
 
 <svelte:head>

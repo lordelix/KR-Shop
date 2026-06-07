@@ -1,5 +1,5 @@
 import { fetchWithErrorHandling } from '../utils/fetchWithErrorResponse';
-import { ApiPaths } from '../api/api';
+import { ApiPaths } from '../api/api.d';
 import createClient from '../api/client';
 import appConfig from '../../../app.config.js';
 

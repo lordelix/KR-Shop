@@ -12,7 +12,6 @@
 		Checkbox,
 		Grid,
 		Input,
-		InputType,
 		Message,
 		Select,
 		Textarea,
@@ -27,21 +26,22 @@
 	let formMessageError: string | undefined = $state(undefined)
 
 	// Form bindings
-	let address = { ...$ORDER.address }
-	let deliveryAddress = { ...$ORDER.deliveryAddress }
-	let message = $ORDER.message || ''
+	let address = $state({ ...$ORDER.address })
+	let deliveryAddress = $state({ ...$ORDER.deliveryAddress })
+	let message = $state($ORDER.message || '')
 
 	function toggleLoading() {
 		isLoading = !isLoading
 	}
 
-	function toggleShippingForm() {
-		if (showShippingForm) {
-			showShippingForm = false
+	function toggleShippingForm(checked: boolean) {
+		showShippingForm = !checked
+
+		if (checked) {
 			deliveryAddress = {}
-		} else {
-			showShippingForm = true
 		}
+
+		return checked
 	}
 
 	function updateOrder() {
@@ -120,7 +120,7 @@
 		</Grid>
 		<Grid size="1">
 			<Input
-				type={InputType.TEL}
+				type='tel'
 				bind:value={address.phone}
 				name="phone"
 				label="Telefonnummer"
@@ -133,6 +133,7 @@
 
 	<Checkbox
 		class="$my"
+		name="same-address"
 		checked={!showShippingForm}
 		onChange={toggleShippingForm}
 		label="Lieferadresse entspricht der Rechnungsadresse" />

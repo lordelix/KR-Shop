@@ -1,7 +1,7 @@
 <script lang="ts">
 	// --- [ Components ] ----------------------------------------------------------------------------
 
-	import { Grid, Link, ProductTile, XioniShopCartButton } from '$lib/boilerplate/components'
+	import { Grid, Link, XioniShopProductTile, XioniShopCartButton } from '$lib/boilerplate/components'
 
 	// --- [ Props ] ---------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@
 		{#each products as product, index (product.id)}
 			<Grid tag="li" size="tablet-1-3" {index}>
 				<Link class="$decoration-none" to="/{product.slug}-p-{product.id}/">
-					<ProductTile {product} />
+					<XioniShopProductTile {product} />
 				</Link>
 			</Grid>
 		{/each}

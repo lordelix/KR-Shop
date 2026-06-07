@@ -10,7 +10,7 @@
 
 	// -----------------------------------------------------------------------------------------------
 
-	let isLoading: boolean = false
+	let isLoading: boolean = $state(false)
 
 	function updateItemQuantity({ detail }: any) {
 		isLoading = true
