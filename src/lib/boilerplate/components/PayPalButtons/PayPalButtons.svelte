@@ -20,14 +20,14 @@
 	}: PayPalButtonsProps = $props()
 
 	const buttonId = uniqueId('paypal-buttons-')
-	const style = {
+	const style = $derived({
 		layout: 'horizontal',
 		color: 'white',
 		disableMaxWidth: false,
 		tagline: false,
 		height: 42,
-		...options
-	} as PayPalButtonsComponentOptions['style']
+		...(options ?? {})
+	} as PayPalButtonsComponentOptions['style'])
 
 	async function onClickHandler(data: unknown, actions: OnClickActions) {
 		onclick?.({ data, actions })

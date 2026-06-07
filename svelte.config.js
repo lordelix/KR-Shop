@@ -10,10 +10,10 @@ const config = {
   compilerOptions: {
     runes: true
   },
-  output: {
-    preloadStrategy: 'preload-mjs'
-  },
   kit: {
+    output: {
+      preloadStrategy: 'preload-mjs'
+    },
     adapter: adapter({
       pages: 'htdocs',
       assets: 'htdocs',

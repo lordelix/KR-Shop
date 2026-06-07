@@ -3,8 +3,9 @@
 	import type { ProductTileProps } from './XioniShopProductTile'
 	import makeBEM from '$lib/boilerplate/utils/makeBem'
 
-	const { class: classProp, product, ...restProps }: ProductTileProps = $props()
-	const { name, teaser, price, vat, image } = product
+	let { class: classProp, product, ...restProps }: ProductTileProps = $props()
+
+	const { name, teaser, price, vat, image } = $derived(product)
 
 	const bem = makeBEM('XioniShopProductTile')
 </script>
