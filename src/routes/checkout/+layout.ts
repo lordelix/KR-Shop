@@ -6,6 +6,9 @@ export const prerender = false;
 export async function load() {
   useOrder()
     .getOrder()
-    .then(ORDER.set)
-    .catch((response) => console.error(response.data.message));
+    .then((order) => {
+      if (!order) return;
+      ORDER.set(order);
+    })
+    .catch((error) => console.error(error));
 }

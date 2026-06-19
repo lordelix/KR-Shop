@@ -45,7 +45,7 @@ export function useOrder() {
     return orderAdapter(data) as XioniShop.Order;
   }
 
-  async function getOrder(id?: string): Promise<XioniShop.Order> {
+  async function getOrder(id?: string): Promise<XioniShop.Order | null> {
     const data = await fetchWithErrorHandling(() =>
       id
         ? client.GET(ApiPaths.getOrderByTransactionId, {
@@ -60,7 +60,7 @@ export function useOrder() {
           })
     );
 
-    return orderAdapter(data) as XioniShop.Order;
+    return data ? (orderAdapter(data) as XioniShop.Order) : null;
   }
 
   return {
