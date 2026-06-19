@@ -12,7 +12,7 @@
 		options = [],
 		required = false,
 		values = options,
-		value = $bindable(values[0]),
+		value = $bindable(),
 		placeholder = '',
 		disabled = false,
 		id = 'select-' + randomString(),
@@ -21,6 +21,12 @@
 		class: className,
 		...restProps
 	}: SelectProps = $props()
+
+	$effect(() => {
+		if (value === undefined && values.length > 0 && values[0] !== undefined) {
+			value = values[0]
+		}
+	})
 
 	// --- [ BEM ] -----------------------------------------------------------------------------------
 

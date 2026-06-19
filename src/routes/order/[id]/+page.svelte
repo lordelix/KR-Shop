@@ -25,6 +25,11 @@
 	async function onApproveHandler() {
 		await paymentApi.capturePayPalTransaction(paypalOrderId)
 		await orderApi.getOrder(order.transactionId)
+
+		messages.add('Zahlung abgeschlossen.', 'Pay Pal', {
+			type: 'success',
+			timeout: 5000
+		})
 	}
 
 	async function createOrderHandler() {
@@ -32,11 +37,6 @@
 
 		try {
 			paypalOrderId = await paymentApi.createPayPalTransaction(order.transactionId as string)
-
-			messages.add('Zahlung abgeschlossen.', 'Pay Pal', {
-				type: 'success',
-				timeout: 5000
-			})
 		} catch (e) {
 			const { data: error } = e as any
 			const errors = error.details ? Object.entries(error.details) : ['Ein Fehler ist aufgetreten.']

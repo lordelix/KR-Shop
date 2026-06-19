@@ -12,6 +12,7 @@ export default defineConfig({
   },
   plugins: [
     autoImport({
+      configFile: false,
       components: [
         {
           name: './src/lib/boilerplate/components',
@@ -31,7 +32,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         changeOrigin: true,
-        target: 'https://api.klickrhein.de/v6',
+        target: 'https://api.klickrhein.de/v5dev',
         rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
