@@ -19,6 +19,7 @@ export namespace XioniShop {
       description: string;
       text: string;
     };
+    weight: number;
     shipping: {
       price: {
         value: number;

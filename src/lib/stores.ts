@@ -1,13 +1,26 @@
-import { writable } from 'svelte/store';
+import { writable, type Writable } from 'svelte/store';
 import type { XioniShop } from '$lib/boilerplate/xioni/types';
 
-export const ORDER = writable({
+type ResettableStore<T> = Writable<T> & {
+  $reset: () => void;
+};
+
+function createResettableStore<T>(initialValue: T): ResettableStore<T> {
+  const store = writable(initialValue);
+
+  return {
+    ...store,
+    $reset: () => store.set(initialValue)
+  };
+}
+
+export const ORDER = createResettableStore({
   address: {},
   total: {},
   shippingCost: {}
 } as XioniShop.Order);
 
-export const CART = writable({
+export const CART = createResettableStore({
   gross: {
     value: 0,
     formatted: '0,00 €'
@@ -25,4 +38,4 @@ export const CART = writable({
     },
     unit: 'kg.'
   }
-} as XioniShop.Cart);
+} satisfies XioniShop.Cart);
