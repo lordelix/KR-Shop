@@ -46,18 +46,20 @@ export function useOrder() {
   }
 
   async function getOrder(id?: string): Promise<XioniShop.Order | null> {
-    const data = await fetchWithErrorHandling(() =>
-      id
-        ? client.GET(ApiPaths.getOrderByTransactionId, {
-            params: {
-              path: { moduleId, transactionId: id }
-            }
-          })
-        : client.GET(ApiPaths.getOrder, {
-            params: {
-              path: { moduleId }
-            }
-          })
+    const data = await fetchWithErrorHandling(
+      () =>
+        id
+          ? client.GET(ApiPaths.getOrderByTransactionId, {
+              params: {
+                path: { moduleId, transactionId: id }
+              }
+            })
+          : client.GET(ApiPaths.getOrder, {
+              params: {
+                path: { moduleId }
+              }
+            }),
+      { noContent: true }
     );
 
     return data ? (orderAdapter(data) as XioniShop.Order) : null;

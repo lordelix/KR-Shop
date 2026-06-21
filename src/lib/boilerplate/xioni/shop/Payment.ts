@@ -26,12 +26,14 @@ export function usePayment() {
   }
 
   async function capturePayPalTransaction(orderId: string): Promise<boolean> {
-    await fetchWithErrorHandling(() =>
-      client.POST(ApiPaths.capturePayPalPaymentForOrder, {
-        params: {
-          path: { moduleId }
-        }
-      })
+    await fetchWithErrorHandling(
+      () =>
+        client.POST(ApiPaths.capturePayPalPaymentForOrder, {
+          params: {
+            path: { moduleId }
+          }
+        }),
+      { noContent: true }
     );
 
     return true;
