@@ -1,7 +1,7 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation'
 	import { Button, Grid, PayPalButtons, Wrapper } from '$lib/boilerplate/components/index.js'
 	import { format } from '$lib/boilerplate/utils/formatDate.js'
-	import { useOrder } from '$lib/boilerplate/xioni/shop/Order.js'
 	import { usePayment } from '$lib/boilerplate/xioni/shop/Payment.js'
 	import messages from '$lib/messages'
 	import shopConfig from '$lib/app.config'
@@ -19,12 +19,11 @@
 	let date = $derived(format(order.date as Date, 'PPP'))
 	let deliveryAddress = $derived(order.deliveryAddress as XioniShop.Order['deliveryAddress'])
 
-	const orderApi = useOrder()
 	const paymentApi = usePayment()
 
 	async function onApproveHandler() {
 		await paymentApi.capturePayPalTransaction(paypalOrderId)
-		await orderApi.getOrder(order.transactionId)
+		await invalidateAll()
 
 		messages.add('Zahlung abgeschlossen.', 'Pay Pal', {
 			type: 'success',
