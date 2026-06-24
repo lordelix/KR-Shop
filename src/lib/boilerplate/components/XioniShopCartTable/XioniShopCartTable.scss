@@ -1,13 +1,13 @@
 @use '$lib/boilerplate/styles/mixins' as mixins;
 
 :where(.XioniShopCartTable) {
-  @include mixins.breakpoint('mobile') {
-    th,
-    td {
-      padding: 0.5rem;
-      &:first-of-type {
-        word-break: break-word;
-      }
-    }
-  }
+	@include mixins.breakpoint('mobile') {
+		th,
+		td {
+			padding: 0.5rem;
+			&:first-of-type {
+				word-break: break-word;
+			}
+		}
+	}
 }

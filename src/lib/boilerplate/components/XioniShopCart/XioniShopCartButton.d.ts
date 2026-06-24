@@ -1,4 +1,4 @@
 export type XioniShopCartButtonProps = {
-  hideEmpty?: boolean;
-  text?: string;
-} & HTMLAttributes<HTMLElement>;
+	hideEmpty?: boolean
+	text?: string
+} & HTMLAttributes<HTMLElement>

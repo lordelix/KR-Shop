@@ -1,69 +1,69 @@
 $button-primary-color: #5252ae;
 
 :where(.XioniShopCartButton) {
-  align-items: center;
-  background-color: white;
-  border-radius: 3px;
-  border: 1px solid #e6e6e6;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  padding: 0.5rem;
-  text-decoration: none;
-  transition: all 0.25s;
-  user-select: none;
-  position: relative;
-  color: #666;
+	align-items: center;
+	background-color: white;
+	border-radius: 3px;
+	border: 1px solid #e6e6e6;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	padding: 0.5rem;
+	text-decoration: none;
+	transition: all 0.25s;
+	user-select: none;
+	position: relative;
+	color: #666;
 }
 
 :where(.XioniShopCartButton):before {
-  color: $button-primary-color;
-  content: '';
-  font-size: 1.5rem;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: translate(33%, -33%);
+	color: $button-primary-color;
+	content: '';
+	font-size: 1.5rem;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform: translate(33%, -33%);
 }
 
 :where(.XioniShopCartButton--item-count-1):before {
-  content: '➊';
+	content: '➊';
 }
 
 :where(.XioniShopCartButton--item-count-2):before {
-  content: '➋';
+	content: '➋';
 }
 
 :where(.XioniShopCartButton--item-count-3):before {
-  content: '➌';
+	content: '➌';
 }
 
 :where(.XioniShopCartButton--item-count-4):before {
-  content: '➍';
+	content: '➍';
 }
 
 :where(.XioniShopCartButton--item-count-5):before {
-  content: '➎';
+	content: '➎';
 }
 
 :where(.XioniShopCartButton--item-count-6):before {
-  content: '➏';
+	content: '➏';
 }
 
 :where(.XioniShopCartButton--item-count-7):before {
-  content: '➐';
+	content: '➐';
 }
 
 :where(.XioniShopCartButton--item-count-8):before {
-  content: '➑';
+	content: '➑';
 }
 
 :where(.XioniShopCartButton--item-count-9):before {
-  content: '➒';
+	content: '➒';
 }
 
 :where(.XioniShopCartButton--item-count-10):before {
-  content: '➓';
+	content: '➓';
 }

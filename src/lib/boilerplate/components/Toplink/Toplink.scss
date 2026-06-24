@@ -1,31 +1,31 @@
 :where(.Toplink) {
-  position: fixed;
-  right: 0.5rem;
-  bottom: 0.5rem;
-  height: 4rem;
-  width: 4rem;
-  cursor: pointer;
-  opacity: 0.75;
-  border: 0 none;
-  transform: translateY(120%);
-  background-color: gainsboro;
-  display: flex;
-  padding: 1rem;
-  align-items: center;
-  transition:
-    transform 0.2s ease-in-out,
-    opacity 0.333s;
+	position: fixed;
+	right: 0.5rem;
+	bottom: 0.5rem;
+	height: 4rem;
+	width: 4rem;
+	cursor: pointer;
+	opacity: 0.75;
+	border: 0 none;
+	transform: translateY(120%);
+	background-color: gainsboro;
+	display: flex;
+	padding: 1rem;
+	align-items: center;
+	transition:
+		transform 0.2s ease-in-out,
+		opacity 0.333s;
 
-  &:hover {
-    opacity: 1;
-  }
+	&:hover {
+		opacity: 1;
+	}
 
-  @media only screen and (max-width: 500px) {
-    height: 50px;
-    width: 50px;
-  }
+	@media only screen and (max-width: 500px) {
+		height: 50px;
+		width: 50px;
+	}
 }
 
 :where(.Toplink--visible) {
-  transform: translateY(0%);
+	transform: translateY(0%);
 }
