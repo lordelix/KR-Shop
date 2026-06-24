@@ -1,3 +1,3 @@
 export type LinkedDataProps = {
-  data: Record<string, unknown>;
-};
+	data: Record<string, unknown>
+}

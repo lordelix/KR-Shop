@@ -1,12 +1,12 @@
 :where(.Link) {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 :where(.Link) a {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 :where(.Link--has-icon) {
-  display: inline-flex;
-  align-items: center;
+	display: inline-flex;
+	align-items: center;
 }

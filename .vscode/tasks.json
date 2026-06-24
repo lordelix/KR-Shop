@@ -1,32 +1,32 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "type": "npm",
-      "script": "dev",
-      "group": "build",
-      "problemMatcher": [],
-      "label": "Watcher",
-      "detail": "Wiederholtes kompilieren wenn sich Dateien ändern"
-    },
-    {
-      "type": "npm",
-      "script": "build",
-      "group": "build",
-      "problemMatcher": [],
-      "label": "Build",
-      "detail": "Einmaliges kompilieren"
-    },
-    {
-      "command": "npm",
-      "problemMatcher": [],
-      "type": "shell",
-      "options": {
-        "cwd": "./"
-      },
-      "args": ["install", "--legacy-peer-deps"],
-      "label": "Install",
-      "detail": "Boilerplate Daten installieren"
-    }
-  ]
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "dev",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "Watcher",
+			"detail": "Wiederholtes kompilieren wenn sich Dateien ändern"
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "Build",
+			"detail": "Einmaliges kompilieren"
+		},
+		{
+			"command": "npm",
+			"problemMatcher": [],
+			"type": "shell",
+			"options": {
+				"cwd": "./"
+			},
+			"args": ["install", "--legacy-peer-deps"],
+			"label": "Install",
+			"detail": "Boilerplate Daten installieren"
+		}
+	]
 }

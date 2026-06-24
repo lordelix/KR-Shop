@@ -1,11 +1,11 @@
 :where(.Picture) {
-  display: inline-block;
+	display: inline-block;
 }
 
 :where(.Picture--right) {
-  float: right;
+	float: right;
 }
 
 :where(.Picture--left) {
-  float: left;
+	float: left;
 }

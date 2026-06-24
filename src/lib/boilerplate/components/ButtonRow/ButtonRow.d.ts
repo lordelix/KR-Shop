@@ -1,3 +1,3 @@
 export type ButtonRowProps = ComponentBaseProps & {
-  children?: Snippet;
-};
+	children?: Snippet
+}

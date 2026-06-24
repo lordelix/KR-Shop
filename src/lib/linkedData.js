@@ -1,5 +1,5 @@
-import stammdaten from '$stammdaten';
+import stammdaten from '$stammdaten'
 
 export default {
-  '@type': 'Any'
-};
+	'@type': 'Any'
+}
