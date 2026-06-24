@@ -3,21 +3,21 @@
 $Nav-breakpoint: 9999px;
 
 .Nav {
-  // --- Desktop navigation styles -----------------------------------------------------------------
+	// --- Desktop navigation styles -----------------------------------------------------------------
 
-  @media (width >= $Nav-breakpoint) {
-  }
+	@media (width >= $Nav-breakpoint) {
+	}
 
-  // --- Mobile navigation styles ------------------------------------------------------------------
+	// --- Mobile navigation styles ------------------------------------------------------------------
 
-  @media (width < $Nav-breakpoint) {
-  }
+	@media (width < $Nav-breakpoint) {
+	}
 }
 
 .NavBurger {
-  @media (width < 1024px) {
-    &__text {
-      display: none;
-    }
-  }
+	@media (width < 1024px) {
+		&__text {
+			display: none;
+		}
+	}
 }

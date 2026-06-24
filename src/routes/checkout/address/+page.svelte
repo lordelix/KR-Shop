@@ -119,12 +119,7 @@
 			<Input bind:value={address.city} name="city" label="Ort" required />
 		</Grid>
 		<Grid size="1">
-			<Input
-				type='tel'
-				bind:value={address.phone}
-				name="phone"
-				label="Telefonnummer"
-				required />
+			<Input type="tel" bind:value={address.phone} name="phone" label="Telefonnummer" required />
 		</Grid>
 		<Grid size="1">
 			<Input bind:value={address.email} name="email" label="E-Mail-Adresse" required />

@@ -1,9 +1,9 @@
-import { format as formatDate } from 'date-fns';
-import { de } from 'date-fns/locale';
+import { format as formatDate } from 'date-fns'
+import { de } from 'date-fns/locale'
 
-const longFormat = 'EEEE d. LLLL yyyy';
-const mediumFormat = 'EEEE d. LLLL';
-const shortFormat = 'EEEE d.';
+const longFormat = 'EEEE d. LLLL yyyy'
+const mediumFormat = 'EEEE d. LLLL'
+const shortFormat = 'EEEE d.'
 
 /**
  * Formats a date range from a start date to an end date into a readable string,
@@ -20,39 +20,35 @@ const shortFormat = 'EEEE d.';
  * @throws {Error} Throws an error if the 'from' date is missing.
  */
 
-export function formatFromTo(
-  from: Date,
-  to: Date,
-  config: { delimiter?: string } = {}
-) {
-  if (!from) {
-    throw new Error('date missing');
-  }
+export function formatFromTo(from: Date, to: Date, config: { delimiter?: string } = {}) {
+	if (!from) {
+		throw new Error('date missing')
+	}
 
-  if (!to) {
-    return formatDate(to, longFormat);
-  }
+	if (!to) {
+		return formatDate(to, longFormat)
+	}
 
-  const delimiter = config.delimiter || '-';
-  const daysMatch = formatDate(from, 'd') === formatDate(to, 'd');
-  const yearsMatch = formatDate(from, 'y') === formatDate(to, 'y');
-  const monthsMatch = formatDate(from, 'LL') === formatDate(to, 'LL');
+	const delimiter = config.delimiter || '-'
+	const daysMatch = formatDate(from, 'd') === formatDate(to, 'd')
+	const yearsMatch = formatDate(from, 'y') === formatDate(to, 'y')
+	const monthsMatch = formatDate(from, 'LL') === formatDate(to, 'LL')
 
-  let fromFormat;
+	let fromFormat
 
-  if (daysMatch && monthsMatch && yearsMatch) {
-    return format(from, longFormat);
-  }
+	if (daysMatch && monthsMatch && yearsMatch) {
+		return format(from, longFormat)
+	}
 
-  if (!yearsMatch) {
-    fromFormat = longFormat;
-  } else if (!monthsMatch) {
-    fromFormat = mediumFormat;
-  } else {
-    fromFormat = shortFormat;
-  }
+	if (!yearsMatch) {
+		fromFormat = longFormat
+	} else if (!monthsMatch) {
+		fromFormat = mediumFormat
+	} else {
+		fromFormat = shortFormat
+	}
 
-  return `${format(from, fromFormat)} ${delimiter} ${format(to, longFormat)}`;
+	return `${format(from, fromFormat)} ${delimiter} ${format(to, longFormat)}`
 }
 
 /**
@@ -65,5 +61,5 @@ export function formatFromTo(
  */
 
 export function format(date: Date, pattern: string): string {
-  return formatDate(date, pattern, { locale: de });
+	return formatDate(date, pattern, { locale: de })
 }
