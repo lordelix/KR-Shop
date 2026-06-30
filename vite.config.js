@@ -32,7 +32,7 @@ export default defineConfig({
 		proxy: {
 			'/api': {
 				changeOrigin: true,
-				target: 'https://api.klickrhein.de/v5dev',
+				target: 'https://api.klickrhein.de/v6',
 				rewrite: path => path.replace(/^\/api/, '')
 			}
 		}
