@@ -4,12 +4,13 @@ import type { paths } from './api'
 
 export default function createClient(clientOptions?: ClientOptions) {
 	return createOpenApiClient<paths>({
-		baseUrl: '/api',
+		baseUrl: appConfig.shopApiBaseUrl,
 		...clientOptions,
 		headers: {
 			accept: 'application/json',
 			'api-key': appConfig.shopApiKey,
 			...clientOptions?.headers
-		}
+		},
+		credentials: 'include'
 	})
 }
