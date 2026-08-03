@@ -21,7 +21,7 @@
 
 	const { data, children } = $props()
 
-	function mapGroupToRoutes(groups: XioniShop.Group[]): NavProps['routes'] {
+	function mapGroupToRoutes(groups: XioniShop.Group[] | null | undefined): NavProps['routes'] {
 		return (groups || []).map(group => ({
 			name: group.name,
 			path: [group.slug, 'c', group.id].join('-'),
