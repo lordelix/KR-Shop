@@ -12,11 +12,11 @@
 
 	let isLoading: boolean = $state(false)
 
-	function updateItemQuantity({ detail }: any) {
+	function updateItemQuantity(productId: number, quantity: number) {
 		isLoading = true
 
 		useCart()
-			.updateItemQuantity(detail.productId, detail.quantity)
+			.updateItemQuantity(productId, quantity)
 			.then(cart => {
 				CART.set(cart)
 				messages.reset()
@@ -44,7 +44,7 @@
 		total={$CART.total}
 		quantitySelector
 		readOnly={isLoading}
-		on:product-quantity-update={updateItemQuantity} />
+		onProductQuantityUpdate={updateItemQuantity} />
 
 	<div class="$mt-2">
 		<Button fontello="angle-left" to="/">zum Shop</Button>

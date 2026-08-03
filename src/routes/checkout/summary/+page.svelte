@@ -8,14 +8,31 @@
 
 	// --- [ Components ] ----------------------------------------------------------------------------
 
-	import { Button, Grid, Link, Message, XioniShopCartTable } from '$lib/boilerplate/components'
+	import {
+		Button,
+		Checkbox,
+		Grid,
+		Link,
+		Message,
+		XioniShopCartTable
+	} from '$lib/boilerplate/components'
 
 	// -----------------------------------------------------------------------------------------------
 
 	let address = $ORDER.address || {}
 	let deliveryAddress = $ORDER.deliveryAddress || undefined
+	let acceptedTermsAndPrivacy = $state(false)
 
 	function createOrder() {
+		if (!acceptedTermsAndPrivacy) {
+			messages.add(
+				'Bitte akzeptieren Sie AGB und Datenschutz, um die Bestellung abzuschließen.',
+				'Achtung!',
+				{ type: 'error' }
+			)
+			return
+		}
+
 		messages.reset()
 		messages.add('Bestellung wird verarbeitet.', 'Bitte warten', { id: 'loading-indicator' })
 
@@ -107,11 +124,19 @@
 
 	<p><strong>Zahlungsoptionen:</strong> Per PayPal oder im Voraus.</p>
 
+	<Checkbox
+		class="$my"
+		name="accept-terms-and-privacy"
+		bind:checked={acceptedTermsAndPrivacy}
+		label="Ich akzeptiere die <a href='/agb/' target='_blank' rel='noopener noreferrer'>AGB</a> und die <a href='/datenschutz/' target='_blank' rel='noopener noreferrer'>Datenschutzerklärung</a>."
+		required />
+
 	<div class="$mt-2">
 		<Button fontello="angle-left" to="/">zum Shop</Button>
 		<Button
 			fontello="angle-right"
 			class="Button--primary $float-right $row-reverse"
+			disabled={!acceptedTermsAndPrivacy}
 			onClick={createOrder}>jetzt kostenpflichtig bestellen</Button>
 	</div>
 {/if}
