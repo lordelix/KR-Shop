@@ -5,6 +5,7 @@
 
 	type HeaderProps = { left?: Snippet; center?: Snippet; right?: Snippet }
 	let { left, center, right }: HeaderProps = $props()
+</script>
 
 <header class="Header">
 	<Wrapper size="large" class="Header__inner">
