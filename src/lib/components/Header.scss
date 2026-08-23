@@ -1,0 +1,51 @@
+@use '../boilerplate/styles/mixins/breakpoint.scss' as *;
+
+.Header {
+	background: #fff;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.Header__inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	align-items: center;
+	gap: 1rem;
+	margin: 0 auto;
+	padding: 1rem 1.5rem;
+}
+
+.Header__slot {
+	display: flex;
+	align-items: center;
+}
+
+.Header__slot--left {
+	justify-self: start;
+}
+
+.Header__slot--center {
+	justify-self: center;
+}
+
+.Header__slot--right {
+	justify-self: end;
+}
+
+.Header__slot > :where(a, button, span, div) {
+	display: inline-flex;
+	align-items: center;
+}
+
+@include breakpoint('tablet-down') {
+	.Header__inner {
+		grid-template-columns: 1fr;
+		justify-items: center;
+		text-align: center;
+	}
+
+	.Header__slot--left,
+	.Header__slot--center,
+	.Header__slot--right {
+		justify-self: center;
+	}
+}
