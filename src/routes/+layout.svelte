@@ -88,7 +88,7 @@
 <div data-layout="root">
 	<Header>
 		{#snippet left()}
-			<img src="/meta/favicon-32.png" alt="Shop" class="$mr" /> <b>Biene</b>
+			<img src="/meta/favicon-32.png" alt="Shop" class="$mr" /><b>Biene</b>
 		{/snippet}
 		{#snippet center()}
 			<h1 class="h3 $m-0">Willkommen</h1>

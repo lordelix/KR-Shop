@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { Wrapper } from '$lib/boilerplate/components'
+	import type { Snippet } from 'svelte'
 	import './Header.scss'
 
-	let { left, center, right } = $props()
-</script>
+	type HeaderProps = { left?: Snippet; center?: Snippet; right?: Snippet }
+	let { left, center, right }: HeaderProps = $props()
 
 <header class="Header">
 	<Wrapper size="large" class="Header__inner">

@@ -31,8 +31,8 @@
 	justify-self: end;
 }
 
-.Header__slot > * {
-	display: flex;
+.Header__slot > :where(a, button, span, div) {
+	display: inline-flex;
 	align-items: center;
 }
 
