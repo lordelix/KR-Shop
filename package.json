@@ -58,7 +58,7 @@
     "svelte-preprocess": "6.0.5"
   },
   "optionalDependencies": {
-    "@esbuild/linux-x64": "0.28.1",
+    "@esbuild/linux-x64": "0.28.2",
     "@rollup/rollup-linux-x64-gnu": "4.62.4"
   }
 }
