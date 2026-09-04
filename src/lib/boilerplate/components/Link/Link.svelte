@@ -16,7 +16,8 @@
 		target,
 		fontello,
 		rel,
-		label
+		label,
+		onClick
 	}: LinkProps = $props()
 
 	// -----------------------------------------------------------------------------------------------
@@ -42,13 +43,25 @@
 
 		return pathname.length > 1 ? hostname + pathname : hostname
 	}
+
+	function handleClick(event: MouseEvent) {
+		onClick?.(event)
+	}
 </script>
 
 <span class={classNames}>
 	{#if fontello}
 		<Fontello class={BEM.element('icon')} name={fontello} />&nbsp;
 	{/if}
-	<svelte:element this={tag} href={to} {target} {rel} aria-label={label}>
+	<svelte:element
+		this={tag}
+		href={to}
+		{target}
+		{rel}
+		aria-label={label}
+		role={tag === 'a' ? 'link' : 'button'}
+		tabindex={tag === 'a' ? undefined : 0}
+		onclick={handleClick}>
 		{#if children}
 			{@render children()}
 		{:else}

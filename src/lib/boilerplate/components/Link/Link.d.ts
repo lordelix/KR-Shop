@@ -7,6 +7,6 @@ export type LinkProps = ComponentBaseProps & {
 	fontello?: FontelloProps['name']
 	rel?: 'follow' | 'nofollow noopener'
 	label?: string
-	onClick?: () => void
+	onClick?: (event: MouseEvent) => void
 	children?: Snippet
 }
