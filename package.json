@@ -17,7 +17,7 @@
     "version:major": "npm version major --no-git-tag-version"
   },
   "devDependencies": {
-    "@eslint/compat": "2.1.0",
+    "@eslint/compat": "2.1.1",
     "@eslint/js": "10.0.1",
     "@sveltejs/adapter-auto": "7.0.1",
     "@sveltejs/adapter-static": "3.0.10",
