@@ -46,7 +46,7 @@
   "type": "module",
   "dependencies": {
     "@glidejs/glide": "3.7.1",
-    "@paypal/paypal-js": "10.0.0",
+    "@paypal/paypal-js": "11.2.2",
     "@types/glidejs__glide": "3.6.6",
     "@types/lodash-es": "4.17.12",
     "date-fns": "4.4.0",
