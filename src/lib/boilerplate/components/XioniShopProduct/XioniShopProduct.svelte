@@ -55,27 +55,20 @@
 {#if product.id}
 	<div class={[block, className]} itemscope itemtype="https://schema.org/Product">
 		<meta itemprop="productID" content={code} />
-		<meta itemprop="price" content={price.value} />
+		<link itemprop="url" href={page.url.href} />
+		<div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+			<meta itemprop="priceCurrency" content="EUR" />
+			<meta itemprop="price" content={price.value} />
+		</div>
 
-		<ul class={element('breadcrubs')}>
-			{#each path || [] as { id, name, slug }}
-				<li class={element('breadcrubs-crub')}>
+		<ul class={element('breadcrumbs')}>
+			{#each path || [] as { id, name, slug } (id)}
+				<li class={element('breadcrumbs-crub')}>
 					<Link to="{basePath}{slug}-c-{id}">{name}</Link>
 				</li>
 			{/each}
 		</ul>
-		<h2 class={[element('name'), '$mb-2 $mt-1/2']} itemprop="name">
-			{name}
-		</h2>
-
-		<ul class="$flex $gap">
-			{#if code}
-				<li class="$mb-2">Art.-Nr.: {code}</li>
-			{/if}
-			{#if ean}
-				<li>EAN: {ean}</li>
-			{/if}
-		</ul>
+		<h1 class={[element('name')]} itemprop="name">{name}</h1>
 
 		<Grid gap>
 			<Grid size="tablet-2-5" class="$text-center">
@@ -89,8 +82,16 @@
 					itemprop="image" />
 			</Grid>
 			<Grid size="tablet-3-5">
+				<ul class="$flex $gap">
+					{#if code}
+						<li>Art.-Nr.: {code}</li>
+					{/if}
+					{#if ean}
+						<li>EAN: {ean}</li>
+					{/if}
+				</ul>
 				{#if teaser}
-					<p class={element('teaser')}>{@html teaser}</p>
+					<div class={element('teaser')}>{@html teaser}</div>
 				{/if}
 				{#if price}
 					<div class={element('price-box')}>
@@ -118,13 +119,13 @@
 				{/if}
 
 				{#if description}
-					<p class={element('description')} itemprop="description">{@html description}</p>
+					<div class={element('description')} itemprop="description">{@html description}</div>
 				{/if}
 
 				{#if legal}
-					<p class={element('legal-info')}>
+					<div class={element('legal-info')}>
 						{@html legal}
-					</p>
+					</div>
 				{/if}
 			</Grid>
 		</Grid>
