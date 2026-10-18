@@ -55,11 +55,11 @@
 	}
 }
 
-:where(.XioniShopProduct__breadcrubs) {
+:where(.XioniShopProduct__breadcrumbs) {
 	display: flex;
 }
 
-:where(.XioniShopProduct__breadcrubs-crub):not(:first-child)::before {
+:where(.XioniShopProduct__breadcrumbs-crub):not(:first-child)::before {
 	content: '/';
 	padding: {
 		left: 0.5rem;
