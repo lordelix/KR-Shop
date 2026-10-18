@@ -57,7 +57,7 @@
 	{/if}
 </div>
 <Modal class={bem.element('modal')} bind:this={modal}>
-	<!-- svelte-ignore event_directive_deprecated -->
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div
 		class={[
@@ -65,8 +65,7 @@
 			bem.elementModifier('navigate')('prev'),
 			{ $invisible: !(lightboxImages.length > 2) }
 		]}
-		on:keydown
-		on:click={slideBack}>
+		onclick={slideBack}>
 		<Fontello name="left-open" />
 	</div>
 
@@ -76,8 +75,7 @@
 			bem.elementModifier('navigate')('next'),
 			{ $invisible: !(lightboxImages.length > 2) }
 		]}
-		on:keydown
-		on:click={slideForward}>
+		onclick={slideForward}>
 		<Fontello name="right-open" />
 	</div>
 
