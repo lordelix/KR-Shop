@@ -44,6 +44,6 @@
 	<XioniShopProduct {product} onAddToCart={addToCartHandler} />
 	<hr />
 	<div class="$text-center">
-		<Link fontello="angle-left" on:click={() => history.back()}>Zurück</Link>
+		<Link fontello="angle-left" onClick={() => history.back()}>Zurück</Link>
 	</div>
 {/if}
