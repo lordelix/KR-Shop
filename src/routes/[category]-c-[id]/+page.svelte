@@ -38,7 +38,7 @@
 {/if}
 
 {#if products.length}
-	<ol class="product-grid">
+	<ol class="product-grid" role="list">
 		{#each products as product (product.id)}
 			<li>
 				<Link class="$decoration-none" to="/{product.slug}-p-{product.id}/">
@@ -80,7 +80,7 @@
 
 	.product-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
 		gap: 1rem;
 		margin: 0;
 		padding: 0;
