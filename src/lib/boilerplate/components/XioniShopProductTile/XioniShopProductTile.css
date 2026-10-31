@@ -60,9 +60,12 @@
 	font-style: italic;
 }
 
+:where(.XioniShopProductTile__teaser) {
+	text-wrap: balance;
+}
+
 :where(.XioniShopProductTile__teaser) > p {
 	display: inline;
 	font-size: 0.875rem;
 	line-height: 1.45rem;
-	text-wrap: balance;
 }
