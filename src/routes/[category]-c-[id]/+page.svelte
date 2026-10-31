@@ -38,15 +38,15 @@
 {/if}
 
 {#if products.length}
-	<Grid gap tag="ol">
-		{#each products as product, index (product.id)}
-			<Grid tag="li" size="tablet-1-3" {index}>
+	<ol class="product-grid">
+		{#each products as product (product.id)}
+			<li>
 				<Link class="$decoration-none" to="/{product.slug}-p-{product.id}/">
 					<XioniShopProductTile {product} />
 				</Link>
-			</Grid>
+			</li>
 		{/each}
-	</Grid>
+	</ol>
 {/if}
 {#if group.subgroups}
 	<hr />
@@ -77,6 +77,15 @@
 
 <style lang="scss">
 	@use '$lib/boilerplate/styles/mixins' as mixins;
+
+	.product-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
 
 	.subgroup-product-list {
 		@include mixins.breakpoint('tablet-up') {
