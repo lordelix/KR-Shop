@@ -41,7 +41,14 @@
 </script>
 
 <!-- svelte-ignore event_directive_deprecated -->
-<span onclick={() => (location.href = makeHref())} {...restProps} class={[baseName, classProp]}>
+<span
+	{...restProps}
+	onclick={event => {
+		event.preventDefault()
+		location.href = makeHref()
+		restProps.onclick?.(event)
+	}}
+	class={[baseName, classProp]}>
 	{#if fontello}
 		<Fontello baseName={baseName + '__icon'} name={fontello} />&nbsp;
 	{/if}
