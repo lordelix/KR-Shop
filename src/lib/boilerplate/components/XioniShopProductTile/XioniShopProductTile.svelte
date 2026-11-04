@@ -28,8 +28,10 @@
 					{@html teaser}
 				</p>
 			{/if}
+		</div>
+		<div class={bem.element('pricing')}>
 			{#if price}
-				<div class={[bem.element('price'), '$font-larger']}>
+				<div class={[bem.element('total'), '$font-larger']}>
 					{price.formatted}
 				</div>
 				<div class={bem.element('tax')}>
