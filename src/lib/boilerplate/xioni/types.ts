@@ -111,6 +111,10 @@ export namespace XioniShop {
 			slug: string
 		}[]
 		legal: string
+		legalUrl?: {
+			label: string
+			url: string
+		} | null
 		price: {
 			value: number
 			formatted: string
