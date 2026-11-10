@@ -25,6 +25,7 @@
 		path,
 		description,
 		legal,
+		legalUrl,
 		pricePerUnit,
 		quantity,
 		price,
@@ -120,6 +121,14 @@
 
 				{#if description}
 					<div class={element('description')} itemprop="description">{@html description}</div>
+				{/if}
+
+				{#if legalUrl?.url}
+					<div class={element('legal-url')}>
+						<Link to={legalUrl.url} target="_blank" rel="nofollow noopener">
+							{legalUrl.label || 'Weitere Produktinfos'}
+						</Link>
+					</div>
 				{/if}
 
 				{#if legal}
